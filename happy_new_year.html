@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year</title>
+    <style>
+        /* General Body Styles */
+        body {
+            background-color: #0d0d0d;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Terminal-like Window */
+        .terminal {
+            width: 90%;
+            max-width: 800px;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: #33FF33;
+        }
+
+        .terminal-text {
+            display: block;
+            font-size: 1.5em;
+            line-height: 1.5;
+            letter-spacing: 1px;
+        }
+
+        .glow {
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.8), 0 0 15px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.5);
+        }
+
+        /* Typing Animation */
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 4s steps(50) 1s forwards, blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Celebration Message Box */
+        .celebrate-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(0, 255, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            color: #ff00ff;
+            font-size: 1.5em;
+            font-family: "Arial", sans-serif;
+            display: none;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Neon Pulse Stick Effect */
+        .neon-stick {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 100%;
+            background-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 255, 0, 0.6);
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                opacity: 0.5;
+                transform: scaleY(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scaleY(1.5);
+            }
+        }
+
+        /* Music Visualizer */
+        .music-visualizer {
+            position: absolute;
+            bottom: 5%;
+            width: 100%;
+            height: 3px;
+            background-color: #00ff00;
+            animation: soundWave 0.2s alternate infinite;
+        }
+
+        @keyframes soundWave {
+            0% {
+                transform: scaleY(1);
+            }
+            100% {
+                transform: scaleY(3);
+            }
+        }
+
+        /* Play Button */
+        .play-btn {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 1.5em;
+            color: white;
+            background-color: #00ff00;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Light Flash Effect */
+        .flash-light {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 0, 0.5);
+            opacity: 0;
+            animation: flash 0.2s ease-in-out infinite;
+        }
+
+        @keyframes flash {
+            0% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .celebrate-box {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .celebrate-box {
+                font-size: 1em;
+            }
+            .music-visualizer {
+                height: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Terminal Content -->
+    <div class="terminal">
+        <div class="terminal-text">
+            <span class="typewriter glow" id="message">Initializing...</span><span class="cursor"></span>
+        </div>
+    </div>
+
+    <!-- Neon Stick Effect -->
+    <div class="neon-stick" id="neon-stick"></div>
+
+    <!-- Celebration Message Box -->
+    <div class="celebrate-box" id="celebrate-box">
+        <!-- Random message will be injected here -->
+    </div>
+
+    <!-- Music Visualizer (Soundwave effect for music) -->
+    <div class="music-visualizer"></div>
+
+    <!-- Flash Light Effect -->
+    <div class="flash-light" id="flashLight"></div>
+
+    <!-- Play Button -->
+    <button class="play-btn" id="playButton">Play Music</button>
+
+    <!-- Background Music (No Loop) -->
+    <audio id="background-music">
+        <source src="song.mp3" type="audio/mp3">
+        <source src="your-background-music.ogg" type="audio/ogg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <script>
+        // Function to detect user's language and set the appropriate message
+        function getNewYearMessage() {
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear();  // Get current year
+
+            const userLanguage = navigator.language || navigator.userLanguage;  // Get user's language
+
+            // Messages in Hindi and English
+            const messages = {
+                'en': [
+                    `Happy New Year ${currentYear}! May this new year be filled with joy, success, and good health!`,
+                    `May every dream of yours come true and may you achieve success at every step in the new year. Happy New Year!`,
+                    `Wishing you new opportunities and happiness every day in ${currentYear}. Happy New Year!`,
+                    `Step into the new year with new goals, new thoughts, and new energy. Happy New Year!`,
+                    `May ${currentYear} bring happiness, peace, and prosperity into your life. Best wishes for the new year!`,
+                    `Face every challenge in ${currentYear} as an opportunity to grow. Wishing you lots of success!`,
+                    `May happiness and success be with you in the new year. Wishing you a wonderful New Year!`,
+                    `May ${currentYear} fill your life with hope and positivity. Best wishes for the new year!`,
+                    `May the new year bring love, joy, and prosperity into your life. Wishing you a very Happy New Year!`,
+                    `Wishing you success and happiness in every direction this New Year. Happy New Year!`,
+                    `Welcome to the Year ${currentYear}! !`
+                ],
+                'hi': [
+                    `नया साल ${currentYear} मुबारक हो! यह नया साल खुशी, सफलता और अच्छे स्वास्थ्य से भरा हो!`,
+                    `आपके हर सपने को पूरा हो और इस नए साल में हर कदम पर सफलता मिले। नया साल मुबारक हो!`,
+                    `नया साल ${currentYear} हर दिन नए अवसरों और खुशी से भरा हो। नया साल मुबारक हो!`,
+                    `नए लक्ष्य, नए विचार और नई ऊर्जा के साथ नए साल में कदम रखें। नया साल मुबारक हो!`,
+                    `${currentYear} आपका जीवन खुशहाली, शांति और समृद्धि से भरा हो। नए साल की शुभकामनाएं!`,
+                    `${currentYear} में हर चुनौती को बढ़ने का अवसर मानें। आपको ढेर सारी सफलता मिले!`,
+                    `नए साल में खुशी और सफलता आपके साथ हो। आपको एक शानदार नया साल मुबारक हो!`,
+                    `${currentYear} आपका जीवन आशा और सकारात्मकता से भरा हो। नए साल की शुभकामनाएं!`,
+                    `नया साल आपके जीवन में प्रेम, खुशी और समृद्धि लाए। आपको नया साल मुबारक हो!`,
+                    `नया साल सफलता और खुशी से भरा हो। नया साल मुबारक हो!`,
+                    `नए साल में स्वागत है ${currentYear}! !`
+                ]
+            };
+
+            // Choose the appropriate messages based on the user's language
+            const language = userLanguage.startsWith('hi') ? 'hi' : 'en'; // Default to Hindi or English
+            return messages[language][Math.floor(Math.random() * messages[language].length)];
+        }
+
+        // Insert random New Year message into the page
+        const celebrateBox = document.getElementById("celebrate-box");
+        celebrateBox.innerHTML = getNewYearMessage();
+
+        // Display the message box with fade-in effect after 4 seconds
+        setTimeout(function () {
+            celebrateBox.style.display = 'block';
+        }, 4000);
+
+        // Play Button Click Event
+        const playButton = document.getElementById("playButton");
+        const backgroundMusic = document.getElementById("background-music");
+        playButton.addEventListener("click", function() {
+            backgroundMusic.play();
+        });
+
+    </script>
+</body>
+</html>

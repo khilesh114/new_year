@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+
+        .terminal {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+            overflow-y: auto;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .line {
+            margin-bottom: 10px;
+        }
+
+        .command {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .output {
+            color: #00ff00;
+        }
+
+        .info {
+            color: #cccccc;
+        }
+
+        .typing {
+            border-right: 2px solid #00ff00;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line1"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line2"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line3"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line4"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line5"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line6"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line7"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line8"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line9"></span>
+        </div>
+        <div class="line">
+            <span class="command"># </span><span class="output typing" id="line10"></span>
+        </div>
+    </div>
+
+    <script>
+        // Function to simulate typing effect
+        function typeLine(elementId, text, delay) {
+            let i = 0;
+            let element = document.getElementById(elementId);
+            element.textContent = '';
+            let interval = setInterval(function() {
+                element.textContent += text.charAt(i);
+                i++;
+                if (i === text.length) {
+                    clearInterval(interval);
+                }
+            }, delay);
+        }
+
+        // Simulate typing user information
+        setTimeout(() => {
+            typeLine('line1', "Fetching user information...", 100);
+        }, 500);
+
+        // User agent and other details
+        setTimeout(() => {
+            typeLine('line2', "User Agent: " + navigator.userAgent, 100);
+        }, 2000);
+
+        setTimeout(() => {
+            typeLine('line3', "Platform: " + navigator.platform, 100);
+        }, 4000);
+
+        setTimeout(() => {
+            typeLine('line4', "Screen Resolution: " + window.screen.width + "x" + window.screen.height, 100);
+        }, 6000);
+
+        setTimeout(() => {
+            typeLine('line5', "Color Depth: " + window.screen.colorDepth, 100);
+        }, 8000);
+
+        setTimeout(() => {
+            typeLine('line6', "Language: " + navigator.language, 100);
+        }, 10000);
+
+        setTimeout(() => {
+            typeLine('line7', "Online Status: " + navigator.onLine, 100);
+        }, 12000);
+
+        setTimeout(() => {
+            typeLine('line8', "Cookies Enabled: " + navigator.cookieEnabled, 100);
+        }, 14000);
+
+        setTimeout(() => {
+            typeLine('line9', "Timezone: " + Intl.DateTimeFormat().resolvedOptions().timeZone, 100);
+        }, 16000);
+
+        setTimeout(() => {
+            typeLine('line10', "Platform Details: " + navigator.userAgentData?.platform || "Not available", 100);
+        }, 18000);
+
+        // Redirect to Happy New Year page after information is displayed
+        setTimeout(() => {
+            window.location.href = "happy_new_year.html"; // Redirect to the Happy New Year page
+        }, 2000); // Wait for 20 seconds before redirect
+    </script>
+</body>
+</html>
